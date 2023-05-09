@@ -1,0 +1,17 @@
+--- 
+- name: Set up webserver
+  hosts: chatserver
+  remote_user: ubuntu
+  become: true
+  become_user: root
+  tasks:
+    - name: Install nodejs
+      apt:
+        update_cache: yes
+        name: nodejs
+        state: present
+    - name: Install npm
+      apt:
+        update_cache: yes
+        name: npm
+        state: present

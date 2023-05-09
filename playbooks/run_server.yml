@@ -1,0 +1,15 @@
+---
+- name: Run server
+  hosts: chatserver
+  remote_user: ubuntu
+  become: true
+  become_user: root
+  tasks:
+    - name: Run mongodb
+      ansible.builtin.service:
+        name: mongod
+        state: restarted
+    - name: Run server
+      ansible.builtin.command:
+        chdir: /home/ubuntu/lets-chat/
+        cmd: npm start

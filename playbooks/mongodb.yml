@@ -1,0 +1,30 @@
+---
+- name: Install mongodb
+  hosts: chatserver
+  remote_user: ubuntu
+  become: true
+  become_user: root
+  tasks:
+    - name: Install aptitude using apt
+      apt: 
+        name: aptitude 
+        state: latest 
+        update_cache: yes 
+    
+    - name: Import public key
+      apt_key:
+        url: 'https://www.mongodb.org/static/pgp/server-4.4.asc'
+        state: present
+    
+    - name: Add repository
+      apt_repository:
+        filename: '/etc/apt/sources.list.d/mongodb-org-4.4.list'
+        repo: 'deb https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4 multiverse'
+        state: present
+        update_cache: yes
+    
+    - name: Install mongoDB
+      apt: 
+        name: mongodb-org
+        state: present
+        update_cache: yes

@@ -6,11 +6,11 @@ Parameters:
     Description: t2.micro
   AMI:
     Type: String
-    Default: ami-007855ac798b5175e
+    Default: ami-0aa2b7722dc1b5612
     Description: Ubuntu Server 22.04 LTS 
   Key:
     Type: String
-    Default: rocketchat
+    Default: kailun
     Description: The key used to access the instance.
 Resources:
   VPC:
@@ -61,8 +61,8 @@ Resources:
       VpcId: !Ref VPC
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: 80
-          ToPort: 80
+          FromPort: 5000
+          ToPort: 5000
           CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
           FromPort: 22
@@ -75,8 +75,8 @@ Resources:
     Type: AWS::EC2::EIP
     Properties:
       Domain: vpc
-      InstanceId: !Ref Host
-  Host:
+      InstanceId: !Ref Chatserver
+  Chatserver:
     Type: 'AWS::EC2::Instance'
     Properties:
       ImageId: !Ref AMI
@@ -86,26 +86,6 @@ Resources:
       SubnetId: !Ref SubnetA
       SecurityGroupIds:
         - Ref: InstanceSecurityGroup
-      BlockDeviceMappings:
-        - DeviceName: /dev/xvda
-          Ebs:
-            VolumeType: gp2
-            VolumeSize: '10'
-            DeleteOnTermination: 'false'
-            Encrypted: 'true'
-  RocketChat:
-    Type: 'AWS::EC2::Instance'
-    Properties:
-      ImageId: !Ref AMI
-      InstanceType:
-        Ref: InstanceTypeParameter
-      KeyName: !Ref Key
-      NetworkInterfaces: 
-        - AssociatePublicIpAddress: false
-          DeviceIndex: "0"
-          GroupSet:
-            - Ref: InstanceSecurityGroup
-          SubnetId: !Ref SubnetA
       BlockDeviceMappings:
         - DeviceName: /dev/xvda
           Ebs:
