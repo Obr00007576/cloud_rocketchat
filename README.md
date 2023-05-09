@@ -134,3 +134,6 @@ Party time at http://localhost:5000/!
 
 Как показано на рисунке ниже, наш сервер запущен, и мы можем открыть порт 5000 сервера для входа в окно чата.
 ![image](https://github.com/Obr00007576/cloud_rocketchat/assets/51303014/9f65d0fb-0e79-4d4e-af4b-e6906689d117)
+
+Использование сервера чата:
+![](chatserver.gif)
