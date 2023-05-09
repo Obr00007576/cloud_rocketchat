@@ -136,4 +136,5 @@ Party time at http://localhost:5000/!
 ![image](https://github.com/Obr00007576/cloud_rocketchat/assets/51303014/9f65d0fb-0e79-4d4e-af4b-e6906689d117)
 
 Использование сервера чата:
-![](chatserver.gif)
+https://github.com/Obr00007576/cloud_rocketchat/assets/51303014/72e9d33c-f4ce-4e1a-8cd4-9c9f88035d59
+
